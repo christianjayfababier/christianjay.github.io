@@ -1,0 +1,523 @@
+<?php
+
+
+$pageTitle = "Dev CJ";
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CJ Dev Portal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url('assets/backgrounds/bg-1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .drawer-container {
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 25px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .app-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .app-name {
+            font-size: 0.75rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 80px;
+            margin: 0 auto auto -8px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 20px;
+            justify-items: center;
+            margin-top: 30px;
+        }
+
+        .time-display {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .date-display {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .user-welcome {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 50px;
+        }
+      
+        .list-group-item {
+        transition: background-color 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: rgba(211, 211, 211, 0.8) !important;
+            color:rgb(99, 99, 99) !important;
+            cursor: pointer;
+        }
+
+        /* Loading Overlay */
+        :root {
+  --duration: 1.5s;
+  --container-size: 250px;
+  --box-size: 33px;
+  --box-border-radius: 15%;
+}
+
+.container {
+  width: var(--container-size);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.box {
+  width: var(--box-size);
+  height: var(--box-size);
+  position: relative;
+  display: block;
+  transform-origin: -50% center;
+  border-radius: var(--box-border-radius);
+}
+
+.box::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color:rgb(25, 55, 47);
+  border-radius: var(--box-border-radius);
+  box-shadow: 0px 0px 10px 0px rgba(37, 72, 63, 0.4);
+}
+
+.box:nth-child(1) {
+  animation: slide var(--duration) ease-in-out infinite alternate;
+}
+.box:nth-child(1)::after {
+  animation: color-change var(--duration) ease-in-out infinite alternate;
+}
+
+.box:nth-child(2) {
+  animation: flip-1 var(--duration) ease-in-out infinite alternate;
+}
+.box:nth-child(2)::after {
+  background-color:rgb(37, 124, 102);
+  animation: squidge-1 var(--duration) ease-in-out infinite alternate;
+}
+
+.box:nth-child(3) {
+  animation: flip-2 var(--duration) ease-in-out infinite alternate;
+}
+.box:nth-child(3)::after {
+  background-color:rgb(58, 148, 125);
+  animation: squidge-2 var(--duration) ease-in-out infinite alternate;
+}
+
+.box:nth-child(4) {
+  animation: flip-3 var(--duration) ease-in-out infinite alternate;
+}
+.box:nth-child(4)::after {
+  background-color:rgb(84, 181, 157);
+  animation: squidge-3 var(--duration) ease-in-out infinite alternate;
+}
+
+.box:nth-child(5) {
+  animation: flip-4 var(--duration) ease-in-out infinite alternate;
+}
+.box:nth-child(5)::after {
+  background-color:rgb(73, 217, 181);
+  animation: squidge-4 var(--duration) ease-in-out infinite alternate;
+}
+
+@keyframes slide {
+  0% { background-color: rgb(37, 124, 102); transform: translateX(0vw); }
+  100% { background-color: rgb(73, 217, 181); transform: translateX(calc(var(--container-size) - (var(--box-size) * 1.25))); }
+}
+
+@keyframes color-change {
+  0% { background-color: rgb(37, 124, 102); }
+  100% { background-color: rgb(73, 217, 181); }
+}
+
+        @keyframes flip-1 { 0%,15% {transform:rotate(0);} 35%,100% {transform:rotate(-180deg);} }
+        @keyframes flip-2 { 0%,30% {transform:rotate(0);} 50%,100% {transform:rotate(-180deg);} }
+        @keyframes flip-3 { 0%,45% {transform:rotate(0);} 65%,100% {transform:rotate(-180deg);} }
+        @keyframes flip-4 { 0%,60% {transform:rotate(0);} 80%,100% {transform:rotate(-180deg);} }
+
+        @keyframes squidge-1 { 5%{transform:scale(1)} 15%{transform:scale(1.3,.7)} 20%,25%{transform:scale(.8,1.4)} 55%,100%{transform:scale(1)} 40%{transform:scale(1.3,.7)} }
+        @keyframes squidge-2 { 20%{transform:scale(1)} 30%{transform:scale(1.3,.7)} 35%,40%{transform:scale(.8,1.4)} 70%,100%{transform:scale(1)} 55%{transform:scale(1.3,.7)} }
+        @keyframes squidge-3 { 35%{transform:scale(1)} 45%{transform:scale(1.3,.7)} 50%,55%{transform:scale(.8,1.4)} 85%,100%{transform:scale(1)} 70%{transform:scale(1.3,.7)} }
+        @keyframes squidge-4 { 50%{transform:scale(1)} 60%{transform:scale(1.3,.7)} 65%,70%{transform:scale(.8,1.4)} 100%{transform:scale(1)} 85%{transform:scale(1.3,.7)} }
+
+/* Loader Overlay (customized for your needs) */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(28, 58, 51, 0.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+/* Mobile responsiveness for app grid */
+@media (max-width: 576px) {
+  .app-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 icons per row */
+    gap: 15px;
+    justify-content: center; /* center icons */
+  }
+  .app-icon {
+    width: 50px;
+    height: 50px;
+  }
+  .app-name {
+    font-size: 0.7rem;
+    max-width: 70px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .app-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .app-grid {
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  .app-grid {
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1201px) {
+  .app-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="user-welcome" id="user-welcome">Greetings Visitor!</div>
+<div id="user-welcome">Hidden Portal by CJ</div>
+<div class="time-display" id="time"></div>
+<div class="date-display" id="date"></div>
+<br>
+<br>
+
+<div class="drawer-container">
+    <div class="app-grid">
+         <!-- App Icons -->
+         <div>
+           
+           <div class="app-icon" data-link="dashboard.php">
+               <img src="https://img.icons8.com/color/48/000000/tax.png" alt="Tax">
+           </div>
+           <div class="app-name">Aliceshome</div>
+          
+       </div>
+       <div>
+           <div class="app-icon" data-link="ey/coming_soon.php"><img src="https://img.icons8.com/color/48/000000/hammer.png" alt="Tax"></div>
+           <div class="app-name">Bodhitree Group</div>
+       </div>
+       <div>
+          <div class="app-icon" data-link="leave_system/index.php"><img src="https://img.icons8.com/color/48/000000/calendar.png" alt="Calendar"></div>
+          <div class="app-name">My Virtual Cohost</div>
+       </div>
+       <div>
+           <div class="app-icon"data-link="str_calculator/index.php"><img src="https://img.icons8.com/color/48/000000/calculator.png" alt="Calculator"></div>
+           <div class="app-name">Tax Invoice System</div>
+       </div>
+       <div>
+           <div class="app-icon" data-link="ey/coming_soon.php">
+             <img src="https://img.icons8.com/color/48/000000/rank.png" alt="Ranking"></div>
+           <div class="app-name">Ranking System</div>
+       </div>
+       <div>
+           <div class="app-icon" data-link="accounts/index.php">
+             <img src="https://img.icons8.com/color/48/000000/user.png" alt="User">
+           </div>
+           <div class="app-name">User Management</div>
+       </div>
+       <div>
+       <div class="app-icon" data-link="directory/index.php">
+             <img src="https://img.icons8.com/color/48/000000/contacts.png" alt="Contacts"></div>
+           <div class="app-name">Phone Directory</div>
+       </div>
+       
+       <!-- 2nd Row -->
+       <div>
+           <div class="app-icon" data-link="properties/reference.php">
+             <img src="https://img.icons8.com/color/48/000000/list.png" alt="Reference">
+           </div>
+           <div class="app-name">Property Reference</div>
+       </div>
+       <div style="margin-left:-12px">
+          <div class="app-icon" data-bs-toggle="modal" data-bs-target="#credsModal">
+            <img src="https://img.icons8.com/color/48/key.png" alt="Login Credentials">
+          </div>
+          <div class="app-name">Login Credentials</div>
+        </div>
+
+      
+        <div style="margin-left:-12px">
+          <div class="app-icon" data-link="bcc-rate/calendar.php">
+            <img src="https://img.icons8.com/color/48/000000/planner.png" alt="BCC Rate Calendar">
+          </div>
+          <div class="app-name">BCC Rate Calendar</div>
+        </div>
+
+       <div style="margin-left:-12px">
+           <div class="app-icon" data-bs-toggle="modal" data-bs-target="#accountModal">
+             <img src="https://img.icons8.com/color/48/000000/settings.png" alt="Settings">
+           </div>
+           <div class="app-name">My Account</div>
+       </div>
+       
+       <!-- Additional icons can be added here -->
+    </div>
+</div>
+
+<div class="footer" id="footer">This Website is Developed by Christian Jay Fababier</div>
+
+<!-- Account Modal -->
+<div class="modal fade" id="accountModal"  tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="accountModalLabel" style="color:rgb(255, 255, 255); ">My Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+        <ul class="list-group" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+          <li class="list-group-item" style="background-color: rgba(0, 0, 0, 0.5) !important;color: #ffffff">My Information</li>
+          <li class="list-group-item" style="background-color: rgba(0, 0, 0, 0.5) !important;color: #ffffff">Change Background</li>
+          <li class="list-group-item" style="background-color: rgba(0, 0, 0, 0.5) !important; color:rgb(157, 12, 34);"><a href="../logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+     </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login Credentials Modal -->
+<div class="modal fade" id="credsModal" tabindex="-1" aria-labelledby="credsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="accountModalLabel" style="color: rgb(255, 255, 255);">Login Credentials</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+        <ul class="list-group" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+          <li class="list-group-item" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+            <a href="https://docs.google.com/spreadsheets/d/1ccvRhb3-gcqPu1b26KS6uCeI2LA70h_vJQihIIRAJEI/edit?usp=sharing" target="_blank" style="color: #ffffff; text-decoration: none;">
+              🔐 Login Credentials - Master and Admin
+            </a>
+          </li>
+          <li class="list-group-item" style="background-color: rgba(0, 0, 0, 0.5) !important;">
+            <a href="https://docs.google.com/spreadsheets/d/1F6JJAZkbwFF9eeeT5FgXBz5G5KT6OXPpnrORmJiZMpI/edit?gid=0#gid=0" target="_blank" style="color: #ffffff; text-decoration: none;">
+              🔐 Login Credentials - Accounts
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Loader Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div>
+      <img src="assets/backgrounds/bodhitree-logo-white.png" alt="bodhitree logo white" style="width:100px;height:100px;">
+    </div>
+    <br><br>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <!-- give this div an id so JS can target it -->
+    <div id="loadingText" style="margin-top: 20px; color: white; font-size: 18px;  font-style: italic;">
+      Loading System...
+    </div>
+  </div>
+
+
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+     function updateTimeAndDate() {
+    const now = new Date();
+    const options = { 
+        weekday: 'long', 
+        month: 'long', 
+        day: 'numeric', 
+        timeZone: 'Australia/Brisbane' 
+    };
+
+    const timeOptions = {
+        hour: '2-digit', 
+        minute: '2-digit', 
+        hour12: true, 
+        timeZone: 'Australia/Brisbane'
+    };
+
+    document.getElementById('time').textContent = now.toLocaleTimeString('en-AU', timeOptions);
+    document.getElementById('date').textContent = now.toLocaleDateString('en-AU', options);
+}
+
+setInterval(updateTimeAndDate, 1000);
+updateTimeAndDate();
+</script>
+
+<script>
+  // 1. List of quotes
+  const loaderQuotes = [
+    "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.",
+    "Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.",
+    "Peace comes from within. Do not seek it without.",
+    "All that we are is the result of what we have thought.",
+    "Hatred does not cease by hatred, but only by love; this is the eternal rule.",
+    "Thousands of candles can be lighted from a single candle, and the life of the candle will not be shortened.",
+    "The mind is everything. What you think, you become.",
+    "No one saves us but ourselves. No one can and no one may. We ourselves must walk the path."
+  ];
+
+  // 2. Function to pick one at random and inject it
+  function setRandomLoaderText() {
+    const idx = Math.floor(Math.random() * loaderQuotes.length);
+    document.getElementById('loadingText').textContent = loaderQuotes[idx];
+  }
+
+  // 3. Call this when the overlay is about to show:
+  function loadAndRedirect(url) {
+    setRandomLoaderText();
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+      window.location.href = url;
+    }, 5000);
+  }
+// Attach click listeners to your icons
+document.querySelectorAll('.app-grid .app-icon').forEach(icon => {
+    icon.style.cursor = 'pointer';
+    icon.addEventListener('click', function() {
+        const link = this.getAttribute('data-link');
+        if (link) {
+            loadAndRedirect(link);
+        }
+    });
+});
+
+
+</script>
+<script>
+  window.addEventListener('pageshow', function(event) {
+    const overlay = document.getElementById('loadingOverlay');
+    // Always hide on initial load or when restored from cache
+    overlay.style.display = 'none';
+  });
+</script>
+
+<script>
+  // Mobile-specific loader fix
+if (window.innerWidth <= 768) {
+  // Force hide overlay when page loads or returns from back/forward cache
+  window.addEventListener('pageshow', function () {
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = 'none';
+  });
+
+  // Adjust redirect timing for mobile (shorter, smoother)
+  function loadAndRedirect(url) {
+    setRandomLoaderText();
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = 'flex';
+    overlay.style.zIndex = "2000"; // keep above Bootstrap modals
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 1200); // faster redirect for mobile
+  }
+}
+
+</script>
+
+
+</body>
+</html>
+
