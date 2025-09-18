@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Developed by Christian Jay Fababier</title>
+  <style>
+    :root{
+      --bg:#000;
+      --yellow:#CB9684; /* bright yellow */
+      --text-size-desktop:calc(2.4rem + 1.2vw);
+      --text-size-mobile:1.4rem;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      font-family: "Courier New", monospace;
+      color:var(--yellow);
+    }
+
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:28px;
+      padding:24px;
+      box-sizing:border-box;
+      text-align:center;
+    }
+
+    .typed {
+      font-weight:700;
+      font-size:var(--text-size-desktop);
+      white-space:nowrap;
+      overflow:hidden;
+      border-right:4px solid var(--yellow); /* blinking cursor */
+      width:0;
+      animation: typing 4s steps(40,end) forwards, caretBlink .8s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to   { width: 40ch; } /* enough to reveal "This Site is developed by Christian Jay Fababier" */
+    }
+
+    @keyframes caretBlink {
+      50% { border-color: transparent; }
+    }
+
+    @media (max-width:600px){
+      .typed {
+        font-size:var(--text-size-mobile);
+        border-right:3px solid var(--yellow);
+        to { width: 34ch; }
+      }
+    }
+
+    .explore-btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:14px 36px;
+      font-size:1.05rem;
+      font-weight:700;
+      border-radius:999px;
+      background:var(--yellow);
+      color:#000;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5), inset 0 -4px 8px rgba(0,0,0,0.06);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .explore-btn:hover{
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.6);
+    }
+    .explore-btn:active{
+      transform: translateY(2px) scale(.996);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="typed">System code is on my github, Check my repo</div>
+   
+  </main>
+
+ 
+</body>
+</html>
